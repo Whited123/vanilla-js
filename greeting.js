@@ -1,30 +1,31 @@
-const firstForm = document.querySelector(".firstform");
-const firstBox = document.querySelector(".firstbox");
-const secondForm = document.querySelector(".secondform");
-const secondBox = document.querySelector(".secondbox");
-const result = document.querySelector(".result");
+const loginForm = document.querySelector("#login-form");
+const loginInput = loginForm.querySelector("input");
+const loginButton = loginForm.querySelector("button");
+const greeting = document.querySelector("#greeting");
 
-function firstBoxInput() {
-  const valuebox = firstBox.value;
-  secondBox.setAttribute("max", valuebox);
-}
+const hiddenOfHidden = "hidden";
+const USERNAME_KEY = "username";
 
-firstForm.addEventListener("input", firstBoxInput);
-
-function secondFormSubmit(event) {
+function logInSubmit(event) {
   event.preventDefault();
-  const valuebox = firstBox.value;
-  const choosenum = secondBox.value;
-  const randomnum = Math.ceil(Math.random() * valuebox);
-  maderesult(choosenum, randomnum);
+  loginForm.classList.add(hiddenOfHidden);
+  localStorage.setItem(USERNAME_KEY, loginInput.value);
+  paintGreetings();
 }
 
-secondForm.addEventListener("submit", secondFormSubmit);
+const savedUsername = localStorage.getItem(USERNAME_KEY);
 
-function maderesult(choosenum, randomnum) {
-  if (parseInt(choosenum) === randomnum) {
-    result.innerText = `you are ${choosenum}, computer choose ${randomnum}, you are win`;
-  } else {
-    result.innerText = `you are ${choosenum}, computer choose ${randomnum}, you are lose`;
-  }
+console.log(savedUsername);
+
+function paintGreetings() {
+  const username = localStorage.getItem(USERNAME_KEY);
+  greeting.innerText = `Hello ${username}`;
+  greeting.classList.remove(hiddenOfHidden);
+}
+
+if (savedUsername === null) {
+  loginForm.classList.remove(hiddenOfHidden);
+  loginForm.addEventListener("submit", logInSubmit);
+} else {
+  paintGreetings();
 }

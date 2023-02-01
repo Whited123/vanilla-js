@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Casino</title>
+    <title>Momentum</title>
   </head>
   <body>
-    <h1>Vanilla Casino</h1>
-    <h2>Generate a number 0 and</h2>
-    <form class="firstform">
-      <input class="firstbox" type="number" />
+    <form id="login-form" class="hidden">
+      <input
+        required
+        maxlength="15"
+        type="text"
+        placeholder="What is your name?"
+      />
+      <button>Log in</button>
     </form>
-    <h2>Guess the number :</h2>
-    <form class="secondform">
-      <input required class="secondbox" />
-      <input class="secondbox" type="submit" value="Play!" />
-    </form>
-    <span class="result"></span>
+    <h2 id="clock">00:00:00</h2>
+    <h1 id="greeting" class="hidden"></h1>
     <script src="js/greeting.js"></script>
     <script src="js/clock.js"></script>
   </body>
